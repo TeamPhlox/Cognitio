@@ -1,13 +1,16 @@
 require.config({
 	paths: {
+		// Libraries
 		jquery: 'bower_components/jquery/dist/jquery',
-		kinetic: 'bower_components/src/kinetic.js',
-		raphael: 'bower_components/raphael.js',
-		customModule: 'test/test'
+		kinetic: 'bower_components/kineticjs//kinetic',
+		raphael: 'bower_components/raphael',
+
+		// Modules
+		renderer: 'game/renderer',
+		config: 'game/config'
 	}
 });
 
-requirejs(['customModule', 'jquery'], function(human) {
-	$('h1').html(human.name);
-	$('h2').html(human.age);
+requirejs(['renderer'], function(renderer) {
+	console.log(renderer.status);
 });
