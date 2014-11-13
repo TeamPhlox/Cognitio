@@ -7,10 +7,13 @@ require.config({
 
 		// Modules
 		renderer: 'game/renderer',
-		config: 'game/config'
+		config: 'game/config',
+		objects: 'game/objects'
 	}
 });
 
-requirejs(['renderer'], function(renderer) {
+requirejs(['renderer', 'objects'], function(renderer, GameObjects) {
 	console.log(renderer.status);
+	var ninja = new GameObjects.Ninja();
+	console.log(ninja);
 });
