@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "homepage": "https://github.com/TeamPhlox/Cognitio",
   "authors": [
-    "IvailoPapazov <ihellfiend@gmail.com>"
+    "IvailoPapazov <ihellfiend@gmail.com>",
+    "00dri <alexandrova.adriana@gmail.com>"
   ],
   "main": "app.js",
   "license": "MIT",
