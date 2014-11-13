@@ -10,6 +10,9 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 	backgroundImageObj.src = 'img/background.jpg';
 
 	var frontLayer = new Kinetic.Layer();
+	var castleImageObj = new Image();
+	castleImageObj.src = 'img/castle.png';
+	
 	var ninjaImageObj = new Image();
 	ninjaImageObj.src = 'img/ninja.png';
 
@@ -36,6 +39,17 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 		});
 
 		frontLayer.add(ninjaImage);
+		frontLayer.draw();
+	});
+
+	castleImageObj.addEventListener('load', function () {
+		var castleImage = new Kinetic.Image({
+			x: 20,
+			y: 20,
+			image: castleImageObj
+		});
+
+		frontLayer.add(castleImage);
 		frontLayer.draw();
 	});
 
