@@ -20,5 +20,11 @@ time, mark, audio, video {
 
 html, body {
 	overflow: hidden;
+	background-color: black;
+}
+
+#game-container {
+	width: 1200px;
+	margin: 50px auto;
 }
 

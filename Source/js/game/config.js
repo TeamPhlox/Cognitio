@@ -1,8 +1,8 @@
 define([], function () {
 	return {
 		screen: {
-			width: 1920,
-			height: 979
+			width: 1200,
+			height: 680
 		}
 	};
 });

@@ -5,31 +5,38 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 		height: config.screen.height
 	});
 
-	var backgroundLayer = new Kinetic.Layer(); 
+	var backgroundLayer = new Kinetic.Layer();
 	var backgroundImageObj = new Image();
+	backgroundImageObj.src = 'img/background.jpg';
 
-	// TODO: Preload images or use promises or callbacks
-	backgroundImageObj.onload = function () {
+	var frontLayer = new Kinetic.Layer();
+	var ninjaImageObj = new Image();
+	ninjaImageObj.src = 'img/ninja.png';
+
+	stage.add(backgroundLayer); 
+	backgroundLayer.moveToBottom();
+
+	stage.add(frontLayer);
+	frontLayer.moveToTop();
+
+	backgroundImageObj.addEventListener('load', function () {
 		var backgroundImage = new Kinetic.Image({
-			image: backgroundImageObj,
+			image: backgroundImageObj
 		});
 
 		backgroundLayer.add(backgroundImage);
-		frontLayer.add(shape);
+		backgroundLayer.draw();
+	});
 
-		// TODO: Remove this ugliness
-		stage.add(backgroundLayer); 
-		stage.add(frontLayer);
-	};
+	ninjaImageObj.addEventListener('load', function () {
+		var ninjaImage = new Kinetic.Image({
+			x: 800,
+			y: 450,
+			image: ninjaImageObj
+		});
 
-	backgroundImageObj.src = 'img/Castle-field.jpg';
-
-	var frontLayer = new Kinetic.Layer();
-	var shape = new Kinetic.Circle({
-		x: 1500,
-		y: 800,
-		radius: 50,
-		fill: 'lightblue'
+		frontLayer.add(ninjaImage);
+		frontLayer.draw();
 	});
 
 	return {
