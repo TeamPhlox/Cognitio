@@ -3,17 +3,19 @@ require.config({
 		// Libraries
 		jquery: 'bower_components/jquery/dist/jquery',
 		kinetic: 'bower_components/kineticjs//kinetic',
-		raphael: 'bower_components/raphael',
+		raphael: 'bower_components/raphael/raphael',
 
 		// Modules
 		renderer: 'game/renderer',
 		config: 'game/config',
-		objects: 'game/objects'
+		objects: 'game/objects',
+		gameManager: 'game/game-manager',
+		menu: 'game/menu'
 	}
 });
 
-requirejs(['renderer', 'objects'], function(renderer, GameObjects) {
-	console.log(renderer.status);
+requirejs(['renderer', 'objects', 'gameManager', 'menu'], function(renderer, GameObjects, GameManager, menu) {
+	// console.log(renderer.status);
 	var ninja = new GameObjects.Ninja();
 	console.log(ninja);
 });

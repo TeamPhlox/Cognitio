@@ -20,11 +20,23 @@ time, mark, audio, video {
 
 html, body {
 	overflow: hidden;
-	background-color: black;
+	background-color: #e3e3e3;
+}
+
+#game {
+	width: 1200px;
+	height: 680px;
+	margin: 50px auto;
+	position: relative;
 }
 
 #game-container {
-	width: 1200px;
-	margin: 50px auto;
+	position: absolute;
+	z-index: 1;
+}
+
+#svg-container {
+	position: absolute;
+	z-index: 0;
 }
 
