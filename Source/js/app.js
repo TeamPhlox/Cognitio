@@ -16,6 +16,5 @@ require.config({
 
 requirejs(['renderer', 'objects', 'gameManager', 'menu'], function(renderer, GameObjects, GameManager, menu) {
 	// console.log(renderer.status);
-	var ninja = new GameObjects.Ninja();
-	console.log(ninja);
+	GameManager.init();
 });

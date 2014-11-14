@@ -1,4 +1,6 @@
 define(['kinetic', 'config'], function (Kinetic, config) {
+	// var objectDictionary = {};
+
 	var stage = new Kinetic.Stage({
 		container: 'game-container',
 		width: config.screen.width,
@@ -12,15 +14,32 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 	var frontLayer = new Kinetic.Layer();
 	var castleImageObj = new Image();
 	castleImageObj.src = 'img/castle.png';
-	
-	var ninjaImageObj = new Image();
-	ninjaImageObj.src = 'img/ninja.png';
 
 	stage.add(backgroundLayer); 
 	backgroundLayer.moveToBottom();
 
 	stage.add(frontLayer);
 	frontLayer.moveToTop();
+
+	function drawImageObjects(gameObjects) {
+		for (var i = 0; i < gameObjects.length; i++) {
+			var currentObject = gameObjects[i];
+
+			var currentImage = new Kinetic.Image({
+				x: currentObject.x,
+				y: currentObject.y,
+				image: currentObject.image
+			});
+
+			frontLayer.add(currentImage);
+			frontLayer.draw();
+		}
+	}
+
+	function clear() {
+		frontLayer.destroyChildren();
+	}
+
 
 	backgroundImageObj.addEventListener('load', function () {
 		var backgroundImage = new Kinetic.Image({
@@ -29,17 +48,6 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 
 		backgroundLayer.add(backgroundImage);
 		backgroundLayer.draw();
-	});
-
-	ninjaImageObj.addEventListener('load', function () {
-		var ninjaImage = new Kinetic.Image({
-			x: 800,
-			y: 450,
-			image: ninjaImageObj
-		});
-
-		frontLayer.add(ninjaImage);
-		frontLayer.draw();
 	});
 
 	castleImageObj.addEventListener('load', function () {
@@ -53,7 +61,9 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 		frontLayer.draw();
 	});
 
+
 	return {
-		status: 'ok'
+		drawImageObjects: drawImageObjects,
+		clear: clear
 	};
 });
