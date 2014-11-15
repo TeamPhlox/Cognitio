@@ -6,7 +6,7 @@ define(['config', 'renderer', 'objects'], function (config, renderer, GameObject
 		castle;
 
 	// TODO: Initialize object
-	ninja = new GameObjects.Ninja(800, 450, 'img/ninja.png');
+	ninja = new GameObjects.Ninja(800, 490, 'img/ninja.png');
 
 	function init () {
 
@@ -39,17 +39,39 @@ define(['config', 'renderer', 'objects'], function (config, renderer, GameObject
 				console.log("jump");
 				handleJumpCommand();		
 				break;
-			// Up
+            case 37:
+                moveLeft();
+                console.log("left");
+                break;
 			case 38:
 				console.log("up");
 				break;
-			// Down
-			case 40:
-				console.log("down");
-				break;
+            case 39:
+                moveRight();
+                console.log("right");
+                break;
+//			case 40:
+//				console.log("down");
+//				break;
 		}
 	}
-	
+
+    function moveLeft(){
+        var moveDistance = 5;
+
+        if(ninja.x > 650){
+            ninja.x -= moveDistance;
+        }
+    }
+
+    function moveRight(){
+        var moveDistance = 5;
+
+        if(ninja.x < 980){
+            ninja.x += moveDistance;
+        }
+    }
+
 	function handleJumpCommand() {
 		var jumpHeight = 100;
 	
