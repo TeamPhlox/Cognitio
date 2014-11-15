@@ -3,7 +3,11 @@ define(['config', 'renderer', 'objects'], function (config, renderer, GameObject
 
 	var iteration,
 		ninja,
-		castle;
+		castle,
+        KEY_CODE_LEFT = 37,
+        KEY_CODE_RIGHT = 39,
+        KEY_CODE_UP = 38,
+        KEY_CODE_JUMP = 32; //space key
 
 	// TODO: Initialize object
 	ninja = new GameObjects.Ninja(800, 490, 'img/ninja.png');
@@ -35,18 +39,18 @@ define(['config', 'renderer', 'objects'], function (config, renderer, GameObject
 	function onKeyPress(ev) {
 		switch (ev.keyCode) {
 			// Space
-			case 32: 
+			case KEY_CODE_JUMP:
 				console.log("jump");
 				break;
-            case 37:
+            case KEY_CODE_LEFT:
                 moveLeft();
                 console.log("left");
                 break;
-			case 38:
+			case KEY_CODE_UP:
                 handleJumpCommand();
 				console.log("up");
 				break;
-            case 39:
+            case KEY_CODE_RIGHT:
                 moveRight();
                 console.log("right");
                 break;
