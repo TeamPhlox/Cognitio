@@ -11,9 +11,6 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 	var backgroundImageObj = new Image();
 	backgroundImageObj.src = 'img/background.jpg';
 
-	var castleImageObj = new Image();
-	castleImageObj.src = 'img/castle.png';
-
 	stage.add(backgroundLayer); 
 	backgroundLayer.moveToBottom();
 
@@ -31,8 +28,14 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 				image: currentObject.image
 			});
 
-			frontLayer.add(currentImage);
-			frontLayer.draw();
+			if(currentObject.position == 'back') {
+				backgroundLayer.add(currentImage);
+				backgroundLayer.draw();
+			}
+			else {
+				frontLayer.add(currentImage);
+				frontLayer.draw();
+			}
 		}
 	}
 
@@ -48,18 +51,6 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 		backgroundLayer.add(backgroundImage);
 		backgroundLayer.draw();
 	});
-
-	castleImageObj.addEventListener('load', function () {
-		var castleImage = new Kinetic.Image({
-			x: 20,
-			y: 20,
-			image: castleImageObj
-		});
-
-		backgroundLayer.add(castleImage);
-		backgroundLayer.draw();
-	});
-
 
 	return {
 		drawImageObjects: drawImageObjects,
