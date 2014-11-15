@@ -1,32 +1,31 @@
-define(['config', 'renderer', 'objects'], function (config, renderer, GameObjects) {
+define(['config', 'renderer', 'objects', 'globalConstants'], function (config, renderer, GameObjects, GlobalConstants) {
 	'use strict';
 
 	var iteration,
 		ninja,
 		castle,
-        KEY_CODE_LEFT = 37,
-        KEY_CODE_RIGHT = 39,
-        KEY_CODE_UP = 38,
-        KEY_CODE_JUMP = 32; //space key
+		objectList = [];
 
-	// TODO: Initialize object
+	// Initialize object
 	ninja = new GameObjects.Ninja(800, 490, 'img/ninja.png');
+	objectList.push(ninja);
 
 	function init () {
-
-		// TODO: Check for user input
+		// Check for user input
 		document.addEventListener('keydown', onKeyPress);
 
-		// TODO: Update object 
-		//ninja.x -= 3;
-		ninjaPhysics();
+		// Update object 
+		for (var i = 0; i < objectList.length; i++) {
+			objectList[i].update();
+		}
 
-		// TODO: Clean objects
+		// Clean objects
 		renderer.clear();
 
-		// TODO: Render screen
-		renderer.drawImageObjects([ninja]);
+		// Render screen
+		renderer.drawImageObjects(objectList);
 
+		// Repeat game cycle
 		iteration = setTimeout(init, config.gameSpeed);
 	}	
 
@@ -38,58 +37,31 @@ define(['config', 'renderer', 'objects'], function (config, renderer, GameObject
 	// User input handler
 	function onKeyPress(ev) {
 		switch (ev.keyCode) {
-			// Space
-			case KEY_CODE_JUMP:
-				console.log("jump");
+			case GlobalConstants.keyCodes.space:
 				break;
-            case KEY_CODE_LEFT:
-                moveLeft();
-                console.log("left");
+            case GlobalConstants.keyCodes.left:
+            	handleLeftLeftKeyPress();
                 break;
-			case KEY_CODE_UP:
-                handleJumpCommand();
-				console.log("up");
+			case GlobalConstants.keyCodes.up:
+                handleUpKeyPress();
 				break;
-            case KEY_CODE_RIGHT:
-                moveRight();
-                console.log("right");
+            case GlobalConstants.keyCodes.right:
+                handleRightKeyPress();
                 break;
 		}
 	}
 
-    function moveLeft(){
-        var moveDistance = 5;
-
-        if(ninja.x > 650){
-            ninja.x -= moveDistance;
-        }
-    }
-
-    function moveRight(){
-        var moveDistance = 5;
-
-        if(ninja.x < 980){
-            ninja.x += moveDistance;
-        }
-    }
-
-	function handleJumpCommand() {
-		var jumpHeight = 100;
-	
-		if(ninja.y - jumpHeight < 0) {
-			ninja.y = 0;
-		}
-		else {
-			ninja.y -= jumpHeight;
-		}
+	// Key press handlers
+	function handleUpKeyPress() {
+		ninja.jump();
 	}
-	
-	function ninjaPhysics() {
-		var fallHeight = 10;
-	
-		if(ninja.y < 450) {
-			ninja.y += fallHeight;
-		}
+
+	function handleLeftLeftKeyPress() {
+		ninja.moveLeft();
+	}
+
+	function handleRightKeyPress() {
+		ninja.moveRight();
 	}
 
 	return {

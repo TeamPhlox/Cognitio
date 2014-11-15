@@ -1,4 +1,4 @@
-define([], function () {
+define(['globalConstants'], function (GlobalConstants) {
 	var GameObject = (function () {
 		function GameObject () {
 			this.x;
@@ -29,10 +29,37 @@ define([], function () {
 			this.image = new Image();
 			this.image.src = imageUrl;
 		}
+		
+		Ninja.prototype.jump = function () {
+			if (this.y - GlobalConstants.jumpHeight < 0) {
+				this.y = 0;
+			}
+			else {
+				this.y -= GlobalConstants.jumpHeight;
+			}
+		}
 
-		// Ninje.prototype.moveUp = function () {
-		// 	this.y += 10;
-		// };
+		Ninja.prototype.update = function () {
+			if(this.y < 450) {
+				this.y += GlobalConstants.fallHeight;
+			}
+		}
+
+		Ninja.prototype.moveLeft = function () {
+	        var moveDistance = 5;
+
+	        if (this.x > 650) {
+	           this.x -= moveDistance;
+	        }
+		}
+
+		Ninja.prototype.moveRight = function () {
+	        var moveDistance = 5;
+
+	        if (this.x < 980) {
+	            this.x += moveDistance;
+	        }
+		}
 
 		return Ninja;
 	})();

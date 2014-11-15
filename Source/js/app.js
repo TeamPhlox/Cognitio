@@ -10,7 +10,8 @@ require.config({
 		config: 'game/config',
 		objects: 'game/objects',
 		gameManager: 'game/game-manager',
-		menu: 'game/menu'
+		menu: 'game/menu',
+		globalConstants: 'game/global-constants'
 	}
 });
 
