@@ -7,7 +7,7 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 		objectList = [];
 
 	// Initialize object
-	ninja = new GameObjects.Ninja(800, 490, 'img/ninja.png');
+	ninja = new GameObjects.Ninja(800, 490, 'img/ninja');
 	objectList.push(ninja);
 
 	function init () {

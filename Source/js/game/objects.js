@@ -1,33 +1,37 @@
 define(['globalConstants'], function (GlobalConstants) {
-	var GameObject = (function () {
-		function GameObject () {
-			this.x;
-			this.y;
-			this.width;
-			this.height;
-			this.image;
-		}
-
-		return GameObject;
-	})();
-
 	var Castle = (function () {
 		function Castle () {
 					
 		}
 
-		Castle.prototype = new GameObject();
-
 		return Castle;
 	})();
 
 	var Ninja = (function () {
-		function Ninja (startX, startY, imageUrl) {
+		var images = {
+			straight: new Image(),
+			crouchLeft: new Image(),
+			crouchRight: new Image(),
+			shootLeft: new Image(),
+			shootRight: new Image(),
+			fall: new Image()
+		};
+
+		function Ninja (startX, startY, imagePath) {
 			this.x = startX;
 			this.y = startY;
 			this.position = 'front';
-			this.image = new Image();
-			this.image.src = imageUrl;
+
+			// Initialize images
+			images.straight.src = imagePath + "/Ninja-Straight.png";
+			images.crouchLeft.src = imagePath + "/Ninja-Crouch-Left.png";
+			images.crouchRight.src = imagePath + "/Ninja-Crouch-Right.png";
+			images.shootLeft.src = imagePath + "/Ninja-Shoot-Left.png";
+			images.shootRight.src = imagePath + "/Ninja-Shoot-Right.png";
+			images.fall.src = imagePath + "/Ninja-Fall.png";
+
+			// Initial object image
+			this.image = images.straight;
 		}
 		
 		Ninja.prototype.jump = function () {
@@ -40,8 +44,12 @@ define(['globalConstants'], function (GlobalConstants) {
 		}
 
 		Ninja.prototype.update = function () {
-			if(this.y < 450) {
+			if (this.y < 450) {
 				this.y += GlobalConstants.fallHeight;
+				this.image = images.fall;
+			}
+			else {
+				this.image = images.straight;
 			}
 		}
 
@@ -69,7 +77,7 @@ define(['globalConstants'], function (GlobalConstants) {
 
 		}
 
-		Wizard.prototype = new GameObject();
+		return Wizard;
 	})();
 
 	var Shuriken = (function () {
@@ -77,10 +85,8 @@ define(['globalConstants'], function (GlobalConstants) {
 
 		}
 
-		Shuriken.prototype = new GameObject();
+		return Shuriken;
 	})();
-
-
 
 	return {
 		Castle: Castle,
