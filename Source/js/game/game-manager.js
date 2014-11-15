@@ -2,7 +2,8 @@ define(['config', 'renderer', 'objects'], function (config, renderer, GameObject
 	'use strict';
 
 	var iteration,
-		ninja;
+		ninja,
+		castle;
 
 	// TODO: Initialize object
 	ninja = new GameObjects.Ninja(800, 450, 'img/ninja.png');
@@ -13,7 +14,8 @@ define(['config', 'renderer', 'objects'], function (config, renderer, GameObject
 		document.addEventListener('keydown', onKeyPress);
 
 		// TODO: Update object 
-		ninja.x -= 10;
+		//ninja.x -= 3;
+		ninjaPhysics();
 
 		// TODO: Clean objects
 		renderer.clear();
@@ -34,7 +36,8 @@ define(['config', 'renderer', 'objects'], function (config, renderer, GameObject
 		switch (ev.keyCode) {
 			// Space
 			case 32: 
-				console.log("jump"); // handleJumpCommand();		
+				console.log("jump");
+				handleJumpCommand();		
 				break;
 			// Up
 			case 38:
@@ -44,6 +47,25 @@ define(['config', 'renderer', 'objects'], function (config, renderer, GameObject
 			case 40:
 				console.log("down");
 				break;
+		}
+	}
+	
+	function handleJumpCommand() {
+		var jumpHeight = 100;
+	
+		if(ninja.y - jumpHeight < 0) {
+			ninja.y = 0;
+		}
+		else {
+			ninja.y -= jumpHeight;
+		}
+	}
+	
+	function ninjaPhysics() {
+		var fallHeight = 10;
+	
+		if(ninja.y < 450) {
+			ninja.y += fallHeight;
 		}
 	}
 

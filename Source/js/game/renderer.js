@@ -11,13 +11,13 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 	var backgroundImageObj = new Image();
 	backgroundImageObj.src = 'img/background.jpg';
 
-	var frontLayer = new Kinetic.Layer();
 	var castleImageObj = new Image();
 	castleImageObj.src = 'img/castle.png';
 
 	stage.add(backgroundLayer); 
 	backgroundLayer.moveToBottom();
 
+	var frontLayer = new Kinetic.Layer();
 	stage.add(frontLayer);
 	frontLayer.moveToTop();
 
@@ -40,7 +40,6 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 		frontLayer.destroyChildren();
 	}
 
-
 	backgroundImageObj.addEventListener('load', function () {
 		var backgroundImage = new Kinetic.Image({
 			image: backgroundImageObj
@@ -57,8 +56,8 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 			image: castleImageObj
 		});
 
-		frontLayer.add(castleImage);
-		frontLayer.draw();
+		backgroundLayer.add(castleImage);
+		backgroundLayer.draw();
 	});
 
 
