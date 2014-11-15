@@ -41,33 +41,37 @@ define(['globalConstants'], function (GlobalConstants) {
 			else {
 				this.y -= GlobalConstants.jumpHeight;
 			}
-		}
+		};
 
 		Ninja.prototype.update = function () {
-			if (this.y < 450) {
+			if (this.y < GlobalConstants.borders.bottom) {
 				this.y += GlobalConstants.fallHeight;
 				this.image = images.fall;
 			}
 			else {
 				this.image = images.straight;
 			}
-		}
+		};
 
 		Ninja.prototype.moveLeft = function () {
-	        var moveDistance = 5;
+	        var moveDistance = GlobalConstants.speed;
 
-	        if (this.x > 650) {
+	        if (this.x > GlobalConstants.borders.left) {
 	           this.x -= moveDistance;
 	        }
-		}
+		};
 
 		Ninja.prototype.moveRight = function () {
-	        var moveDistance = 5;
+	        var moveDistance = GlobalConstants.speed;
 
-	        if (this.x < 980) {
+	        if (this.x < GlobalConstants.borders.right) {
 	            this.x += moveDistance;
 	        }
-		}
+		};
+
+        Ninja.prototype.crouch = function () {
+            this.image = images.crouchLeft;
+        };
 
 		return Ninja;
 	})();

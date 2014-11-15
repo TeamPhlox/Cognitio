@@ -7,7 +7,7 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 		objectList = [];
 
 	// Initialize object
-	ninja = new GameObjects.Ninja(800, 490, 'img/ninja');
+	ninja = new GameObjects.Ninja(800, 470, 'img/ninja');
 	objectList.push(ninja);
 
 	function init () {
@@ -48,6 +48,9 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
             case GlobalConstants.keyCodes.right:
                 handleRightKeyPress();
                 break;
+            case GlobalConstants.keyCodes.down:
+                handleDownKeyPress();
+                break;
 		}
 	}
 
@@ -63,6 +66,10 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 	function handleRightKeyPress() {
 		ninja.moveRight();
 	}
+
+    function handleDownKeyPress(){
+        ninja.crouch();
+    }
 
 	return {
 		init: init
