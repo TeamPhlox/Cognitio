@@ -6,7 +6,9 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 		castle,
 		objectList = [];
 
-	// Initialize object
+    // Initialize object
+    ninja = new GameObjects.Ninja(800, 490, 'img/ninja');
+    castle = new GameObjects.Castle(20, 20, 'img/castle.png');
 
 	objectList.push(ninja);
 	objectList.push(castle);

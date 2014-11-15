@@ -4,7 +4,7 @@ define(['globalConstants'], function (GlobalConstants) {
 			this.x = startX;
 			this.y = startY;
 			this.position = 'back';
-			
+
 			this.image = new Image();
 			this.image.src = imagePath;
 		}
