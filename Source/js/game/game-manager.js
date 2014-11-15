@@ -37,22 +37,19 @@ define(['config', 'renderer', 'objects'], function (config, renderer, GameObject
 			// Space
 			case 32: 
 				console.log("jump");
-				handleJumpCommand();		
 				break;
             case 37:
                 moveLeft();
                 console.log("left");
                 break;
 			case 38:
+                handleJumpCommand();
 				console.log("up");
 				break;
             case 39:
                 moveRight();
                 console.log("right");
                 break;
-//			case 40:
-//				console.log("down");
-//				break;
 		}
 	}
 
