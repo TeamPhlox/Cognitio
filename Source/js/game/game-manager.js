@@ -7,8 +7,9 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 		objectList = [];
 
 	// Initialize object
-	ninja = new GameObjects.Ninja(800, 470, 'img/ninja');
+
 	objectList.push(ninja);
+	objectList.push(castle);
 
 	function init () {
 		// Check for user input
@@ -16,7 +17,9 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 
 		// Update object 
 		for (var i = 0; i < objectList.length; i++) {
-			objectList[i].update();
+			if(objectList[i].position == 'front') {
+				objectList[i].update();
+			}
 		}
 
 		// Clean objects

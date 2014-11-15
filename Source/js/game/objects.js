@@ -1,7 +1,12 @@
 define(['globalConstants'], function (GlobalConstants) {
 	var Castle = (function () {
-		function Castle () {
-					
+		function Castle (startX, startY, imagePath) {
+			this.x = startX;
+			this.y = startY;
+			this.position = 'back';
+			
+			this.image = new Image();
+			this.image.src = imagePath;
 		}
 
 		return Castle;
