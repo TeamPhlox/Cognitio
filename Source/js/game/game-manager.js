@@ -43,12 +43,15 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 	function onKeyPress(ev) {
 		switch (ev.keyCode) {
 			case GlobalConstants.keyCodes.space:
+                handleSpaceKeyPress();
+                console.log("space");
 				break;
             case GlobalConstants.keyCodes.left:
             	handleLeftLeftKeyPress();
                 break;
 			case GlobalConstants.keyCodes.up:
                 handleUpKeyPress();
+                console.log("up");
 				break;
             case GlobalConstants.keyCodes.right:
                 handleRightKeyPress();
@@ -74,6 +77,10 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 
     function handleDownKeyPress(){
         ninja.crouch();
+    }
+
+    function handleSpaceKeyPress(){
+        ninja.shoot();
     }
 
 	return {

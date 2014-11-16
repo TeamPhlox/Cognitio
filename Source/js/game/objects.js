@@ -45,17 +45,17 @@ define(['globalConstants'], function (GlobalConstants) {
 			}
 			else {
 				this.y -= GlobalConstants.jumpHeight;
+                this.image = images.fall;
 			}
 		};
 
 		Ninja.prototype.update = function () {
 			if (this.y < GlobalConstants.borders.bottom) {
 				this.y += GlobalConstants.fallHeight;
-				this.image = images.fall;
 			}
-			else {
-				this.image = images.straight;
-			}
+//            else{
+//                this.image = images.straight;
+//            }
 		};
 
 		Ninja.prototype.moveLeft = function () {
@@ -76,6 +76,10 @@ define(['globalConstants'], function (GlobalConstants) {
 
         Ninja.prototype.crouch = function () {
             this.image = images.crouchLeft;
+        };
+
+        Ninja.prototype.shoot = function () {
+            this.image = images.shootLeft;
         };
 
 		return Ninja;
