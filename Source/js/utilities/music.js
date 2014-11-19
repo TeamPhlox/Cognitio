@@ -5,7 +5,7 @@ var backgroundMusic = document.getElementById('background-music');
 var soundsMusic = document.getElementById('sounds-music');
 
 backgroundMusic.volume = 0.5;
-soundsMusic.volume = 0.5;
+//soundsMusic.volume = 0.5;
 
 musicButton.addEventListener('click', function() {
 	if(this.className == 'off') {
