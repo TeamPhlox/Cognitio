@@ -32,7 +32,9 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 			var currentImage = new Kinetic.Image({
 				x: currentObject.x,
 				y: currentObject.y,
-				image: currentObject.image
+				image: currentObject.image,
+				width: currentObject.width,
+				height: currentObject.height
 			});
 
 			if(currentObject.position == 'back') {

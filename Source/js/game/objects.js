@@ -1,10 +1,10 @@
-define(['globalConstants'], function (GlobalConstants) {
+define(['globalConstants'], function (Constant) {
 	var Castle = (function () {
 		function Castle (startX, startY, imagePath) {
 			this.x = startX;
 			this.y = startY;
-			this.width = 300;
-			this.height = 600;
+			this.width = Constant.castle.width;
+			this.height = Constant.castle.height;
 
 			this.position = 'back';
 
@@ -28,6 +28,8 @@ define(['globalConstants'], function (GlobalConstants) {
 		function Ninja (startX, startY, imagePath) {
 			this.x = startX;
 			this.y = startY;
+			this.width = Constant.ninja.width;
+			this.height = Constant.ninja.height;
 			this.position = 'front';
 
 			// Initialize images
@@ -42,45 +44,38 @@ define(['globalConstants'], function (GlobalConstants) {
 			this.image = images.straight;
 		}
 		
-		Ninja.prototype.jump = function () {
-			if (this.y - GlobalConstants.jumpHeight < 0) {
-				this.y = 0;
-			}
-			else {
-				this.y -= GlobalConstants.jumpHeight;
-                this.image = images.fall;
-			}
-		};
-
-		Ninja.prototype.update = function () {
-			if (this.y < GlobalConstants.borders.bottom) {
-				this.y += GlobalConstants.fallHeight;
-			}
-		};
-
-		Ninja.prototype.moveLeft = function () {
-	        var moveDistance = GlobalConstants.speed;
-
-	        if (this.x > GlobalConstants.borders.left) {
-	           this.x -= moveDistance;
+		Ninja.prototype = {
+			jump: function () {
+				if (this.y - Constant.ninja.jumpHeight < 0) {
+					this.y = 0;
+				}
+				else {
+					this.y -= Constant.ninja.jumpHeight;
+	                this.image = images.fall;
+				}
+			},
+			update: function () {
+				if (this.y < Constant.boundry.bottom) {
+					this.y += Constant.ninja.fallHeight;
+				}
+			},
+			moveLeft: function () {
+		        if (this.x > Constant.boundry.left) {
+		           this.x -= Constant.ninja.moveDistance;
+		        }
+			},
+			moveRight: function () {
+		        if (this.x < Constant.boundry.right) {
+		            this.x += Constant.ninja.moveDistance;
+		        }
+			},
+	       	crouch: function () {
+          		this.image = images.crouchLeft;
+	        },
+			shoot: function () {
+	            this.image = images.shootLeft;
 	        }
-		};
-
-		Ninja.prototype.moveRight = function () {
-	        var moveDistance = GlobalConstants.speed;
-
-	        if (this.x < GlobalConstants.borders.right) {
-	            this.x += moveDistance;
-	        }
-		};
-
-        Ninja.prototype.crouch = function () {
-            this.image = images.crouchLeft;
-        };
-
-        Ninja.prototype.shoot = function () {
-            this.image = images.shootLeft;
-        };
+		}
 
 		return Ninja;
 	})();
@@ -97,19 +92,19 @@ define(['globalConstants'], function (GlobalConstants) {
 		function Shuriken (startX, startY) {
 			this.x = startX;
 			this.y = startY;
-			this.numPoints = 5;
-			this.innerRadius = 8;
-			this.outerRadius = 20;
-			this.fill = 'yellow';
-			this.stroke = 'black';
-			this.strokeWidth = 4;
-			this.width = 20;
-			this.height = 20;
+			this.numPoints = Constant.shuriken.numPoints;
+			this.innerRadius = Constant.shuriken.innerRadius;
+			this.outerRadius = Constant.shuriken.outerRadius;
+			this.fill = Constant.shuriken.fill;
+			this.stroke = Constant.shuriken.stroke;
+			this.strokeWidth = Constant.shuriken.strokeWidth;
+			this.width = Constant.shuriken.width;
+			this.height = Constant.shuriken.height;
 		}
 
 		Shuriken.prototype = {
 			update: function () {
-				this.x -= 20;
+				this.x -= Constant.shuriken.moveDistance;
 			}
 		};
 

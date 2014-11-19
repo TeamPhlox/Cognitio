@@ -1,4 +1,4 @@
-define(['config', 'renderer', 'objects', 'globalConstants'], function (config, renderer, GameObjects, GlobalConstants) {
+define(['config', 'renderer', 'objects', 'globalConstants'], function (config, renderer, GameObjects, Constant) {
 	'use strict';
 
 	var iteration,
@@ -8,8 +8,8 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 		shurikens = [];
 
     // Initialize object
-    ninja = new GameObjects.Ninja(800, 490, 'img/ninja');
-    castle = new GameObjects.Castle(20, 20, 'img/castle.png');
+    ninja = new GameObjects.Ninja(Constant.initialPosition.ninja.x, Constant.initialPosition.ninja.y, 'img/ninja');
+    castle = new GameObjects.Castle(Constant.initialPosition.castle.x, Constant.initialPosition.castle.y, 'img/castle.png');
 
     objectList.push(ninja);
     objectList.push(castle);
@@ -57,19 +57,19 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 	// User input handler
 	function onKeyPress(ev) {
 		switch (ev.keyCode) {
-			case GlobalConstants.keyCodes.space:
+			case Constant.keyCode.space:
                 handleSpaceKeyPress();
 				break;
-            case GlobalConstants.keyCodes.left:
+            case Constant.keyCode.left:
             	handleLeftLeftKeyPress();
                 break;
-			case GlobalConstants.keyCodes.up:
+			case Constant.keyCode.up:
                 handleUpKeyPress();
 				break;
-            case GlobalConstants.keyCodes.right:
+            case Constant.keyCode.right:
                 handleRightKeyPress();
                 break;
-            case GlobalConstants.keyCodes.down:
+            case Constant.keyCode.down:
                 handleDownKeyPress();
                 break;
 		}
@@ -108,6 +108,7 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 	    		firstObject.x + firstObject.width > secondObject.x &&
 	    		firstObject.y < secondObject.y + secondObject.height &&
 	    		firstObject.y + firstObject.height > secondObject.y) {
+
 			return true;
     	}
 
