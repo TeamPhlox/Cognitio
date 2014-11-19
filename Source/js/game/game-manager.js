@@ -5,7 +5,8 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 		ninja,
 		castle,
 		objectList = [],
-		shurikens = [];
+		shurikens = [],
+		lastFiredShuriken = Date.now();
 
     // Initialize object
     ninja = new GameObjects.Ninja(Constant.initialPosition.ninja.x, Constant.initialPosition.ninja.y, 'img/ninja');
@@ -100,7 +101,10 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 
     // Object creation
     function createShuriken() {
-		shurikens.push(new GameObjects.Shuriken(ninja.x, ninja.y));
+    	if (Date.now() - lastFiredShuriken > Constant.shuriken.reloadTime) {
+    		lastFiredShuriken = Date.now();
+			shurikens.push(new GameObjects.Shuriken(ninja.x, ninja.y));
+    	}
     }
 
     // Collision Detection

@@ -42,7 +42,8 @@ define([], function () {
 			strokeWidth: 4,
 			width: 10,
 			height: 10,
-			moveDistance: 20
-		}
+			moveDistance: 20,
+			reloadTime: 300
+		},
 	};
 });
