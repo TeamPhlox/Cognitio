@@ -11,6 +11,7 @@ require.config({
 		objects: 'game/objects',
 		gameManager: 'game/game-manager',
 		menu: 'game/menu',
+		sounds: 'game/sounds',
 		globalConstants: 'game/global-constants'
 	}
 });

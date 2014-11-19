@@ -1,4 +1,4 @@
-define(['globalConstants'], function (Constant) {
+define(['globalConstants', 'sounds'], function (Constant, Sounds) {
 	var Castle = (function () {
 		function Castle (startX, startY, imagePath) {
 			this.x = startX;
@@ -59,6 +59,8 @@ define(['globalConstants'], function (Constant) {
 
 				this.state = "jump";
 				this.image = images.straight;
+				
+				Sounds.PlaySound(Constant.sounds.jump);
 			},
 			update: function () {
 				// this.image = images.straight;
@@ -114,8 +116,10 @@ define(['globalConstants'], function (Constant) {
 				}
 
 	            setTimeout(function () {
-	            	that.image = previousImg;  
+	            	that.image = previousImg;
 	            }, 100);
+				
+				Sounds.PlaySound(Constant.sounds.shoot);
 	        }
 		}
 
