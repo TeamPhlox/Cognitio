@@ -48,6 +48,8 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 		renderer.drawImageObjects([ninja, castle]);
 		renderer.drawShurikenObjects(shurikens);
 
+		// renderer.drawQuestionBox();
+
 		// Repeat game cycle
 	}	
 

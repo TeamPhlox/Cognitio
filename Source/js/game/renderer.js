@@ -25,6 +25,8 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 	stage.add(infoLayer); 
 	infoLayer.setZIndex(2);
 
+	var questionLayer = new Kinetic.Layer();
+	stage.add(questionLayer);
 
 	function drawImageObjects (gameObjects) {
 		if (!gameObjects) {
@@ -74,23 +76,60 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 		}
 	}
 
+		function drawQuestionBox(questionBox){
+
+		var questionBox = new Kinetic.Rect({
+			x: stage.width() / 1.9 - (stage.width() * 0.75) / 5,
+			y: stage.height() / 2 - (stage.height() * 0.75) / 2,	
+			width: stage.width() * 0.35,
+			height: stage.height() * 0.3,
+			fill: 'white',
+			opacity:0.4,
+			stroke: 'aqua',
+			strokeWidth: 4,
+			cornerRadius: 10,
+			dash: [103, 1],
+			shadowColor: 'gray',
+        	shadowBlur: 10,
+        	shadowOffset: {x:10,y:10},
+        	shadowOpacity: 0.2,
+			});
+
+		var questionText = new Kinetic.Text({
+			x: stage.width() / 1.9 - (stage.width() * 0.75) / 5,
+			y: stage.height() / 2 - (stage.height() * 0.75) / 2,	
+	        text: 'Test test\n\n Test test test',
+	        fontSize: 18,
+	        fontFamily: 'Calibri',
+	        fill: '#555',
+	        width: stage.width() * 0.35,
+			height: stage.height() * 0.3,
+	        padding: 20,
+	        align: 'center'
+	      	});
+
+		questionLayer.add(questionBox);
+		questionLayer.add(questionText);
+		questionLayer.draw();
+	}
+
 	var damageBar;
 	function drawHealthBar() {
 		var healthBarBackground = new Kinetic.Rect({
-			x: 450,
-			y: 50,
-			width: 400,
-			height: 50,
+			x: 100,
+			y: 30,
+			width: 150,
+			height: 30,
 			fill: 'white',
 			stroke: 'black',
 			strokeWidth: 5
 		});
 
 		damageBar = new Kinetic.Rect({
-			x: 450,
-			y: 50,
-			width: 400,
-			height: 50,
+			x: 100,
+			y: 30,
+			width: 150,
+			height: 30,
 			fill: 'red',
 			stroke: 'black',
 			strokeWidth: 5
@@ -104,8 +143,13 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 	}
 
 	function updateHealthBar (health) {
-		var damage = (health / 100) * 400
+		var damage = (health / 100) * 150
 		damageBar.size({width: damage})
+
+		if(damage == 0){
+			damageBar.remove();
+			drawQuestionBox();
+		}
 
 		infoLayer.draw();
 	}
