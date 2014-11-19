@@ -58,6 +58,8 @@ define(['globalConstants'], function (Constant) {
 				this.image = images.straight;
 			},
 			update: function () {
+				// this.image = images.straight;
+
 				if (this.state == "steady") {
 					return;
 				}
@@ -74,6 +76,7 @@ define(['globalConstants'], function (Constant) {
 				else if (this.state == "fall") {
 					if (this.y >= Constant.boundry.bottom) {
 						this.state = "steady";
+						this.image = images.straight;
 					}
 					else {
 						this.y += Constant.ninja.fallHeight;
@@ -96,7 +99,13 @@ define(['globalConstants'], function (Constant) {
 				}
 	        },
 			shoot: function () {
+				var that = this;
+
 	            this.image = images.shootLeft;
+
+	            setTimeout(function () {
+	            	that.image = images.straight;  
+	            }, 100);
 	        }
 		}
 
