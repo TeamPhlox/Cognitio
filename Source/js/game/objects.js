@@ -23,6 +23,7 @@ define(['globalConstants'], function (Constant) {
 		var images = {
 			straight: new Image(),
 			crouchLeft: new Image(),
+			crouchLeftShoot: new Image(),
 			crouchRight: new Image(),
 			shootLeft: new Image(),
 			shootRight: new Image(),
@@ -39,6 +40,7 @@ define(['globalConstants'], function (Constant) {
 			// Initialize images
 			images.straight.src = imagePath + "/Ninja-Straight.png";
 			images.crouchLeft.src = imagePath + "/Ninja-Crouch-Left.png";
+			images.crouchLeftShoot.src = imagePath + "/Ninja-Crouch-Left-Shoot.png";
 			images.crouchRight.src = imagePath + "/Ninja-Crouch-Right.png";
 			images.shootLeft.src = imagePath + "/Ninja-Shoot-Left.png";
 			images.shootRight.src = imagePath + "/Ninja-Shoot-Right.png";
@@ -50,7 +52,7 @@ define(['globalConstants'], function (Constant) {
 		
 		Ninja.prototype = {
 			jump: function () {
-				if (this.state != "steady") {
+				if (this.state == "jump" || this.state == "fall") {
 					return;
 				}
 
@@ -94,17 +96,24 @@ define(['globalConstants'], function (Constant) {
 		        }
 			},
 	       	crouch: function () {
-				if(this.y > Constant.boundry.bottom - 20) {
+				if (this.state == "steady") {
+					this.state = "crouch";
 					this.image = images.crouchLeft;
 				}
 	        },
 			shoot: function () {
 				var that = this;
+				var previousImg = this.image;
 
-	            this.image = images.shootLeft;
+				if (this.state == "crouch") {
+					this.image = images.crouchLeftShoot;
+				}
+				else {
+		            this.image = images.shootLeft;
+				}
 
 	            setTimeout(function () {
-	            	that.image = images.straight;  
+	            	that.image = previousImg;  
 	            }, 100);
 	        }
 		}
