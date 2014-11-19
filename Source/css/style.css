@@ -40,3 +40,33 @@ html, body {
 	z-index: 0;
 }
 
+.audio-controls {
+	width: 130px;
+	margin: 0 auto;
+}
+
+.audio-controls div {
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+	margin: 0 auto;
+	
+	background: #fff 7px 8px no-repeat;
+	border: 1px solid #000;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.audio-controls div.off {
+	background-color: #ccc;
+}
+
+.audio-controls #music {
+	background-image: url('../img/music.png');
+	float: left;
+}
+
+.audio-controls #sounds {
+	background-image: url('../img/sounds.png');
+	float: right;
+}
