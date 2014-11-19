@@ -7,6 +7,11 @@ define([], function () {
 			up: 38,
             down: 40
 		},
+		sounds: {
+			jump: 'music/jump.wav',
+			shoot: 'music/shoot.mp3',
+			been_shot: 'music/been_shot.wav'
+		},
 		initialPosition: {
 			ninja: {
 				x: 800,
