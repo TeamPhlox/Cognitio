@@ -76,7 +76,7 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 
 	var damageBar;
 	function drawHealthBar() {
-		var healthBar = new Kinetic.Rect({
+		var healthBarBackground = new Kinetic.Rect({
 			x: 450,
 			y: 50,
 			width: 400,
@@ -87,22 +87,24 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 		});
 
 		damageBar = new Kinetic.Rect({
-			x: 845,
-			y: 55,
-			width: 0,
-			height: 40,
+			x: 450,
+			y: 50,
+			width: 400,
+			height: 50,
 			fill: 'red',
+			stroke: 'black',
+			strokeWidth: 5
 		});
 
-		infoLayer.add(healthBar);
+		infoLayer.add(healthBarBackground);
 		infoLayer.draw();
 
 		infoLayer.add(damageBar);
 		infoLayer.draw();
 	}
 
-	function updateHealthBar (damage) {
-		damageBar.move({x: -damage});
+	function updateHealthBar (health) {
+		var damage = (health / 100) * 400
 		damageBar.size({width: damage})
 
 		infoLayer.draw();

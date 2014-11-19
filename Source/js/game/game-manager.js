@@ -31,8 +31,9 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 			for (var i = 0; i < shurikens.length; i++) {
 				if (hasCollsion(shurikens[i], castle)) 
 				{
+					castle.takeHit(shurikens[i].damage);
+					renderer.updateHealthBar(castle.health);
 					shurikens.splice(i, 1);
-					renderer.updateHealthBar(5);
 				}
 				else {
 					shurikens[i].update();

@@ -14,6 +14,9 @@ define(['globalConstants'], function (Constant) {
 		Castle.prototype = {
 			update: function () {
 				return;
+			},
+			takeHit: function (damage) {
+				this.health -= damage;
 			}
 		};
 
@@ -143,6 +146,7 @@ define(['globalConstants'], function (Constant) {
 			this.width = Constant.shuriken.width;
 			this.height = Constant.shuriken.height;
 			this.angle = 0;
+			this.damage = 5;
 		}
 
 		Shuriken.prototype = {
