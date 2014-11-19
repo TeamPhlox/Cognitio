@@ -10,7 +10,7 @@ define([], function () {
 		initialPosition: {
 			ninja: {
 				x: 800,
-				y: 490
+				y: 470
 			},
 			castle: {
 				x: 20,
@@ -24,8 +24,8 @@ define([], function () {
         },
 		ninja: {
 			jumpHeight: 250,
-			fallHeight: 30,
-	        moveDistance: 7,
+			fallHeight: 20,
+	        moveDistance: 50,
 			width: 186,
 			height: 185
 		},

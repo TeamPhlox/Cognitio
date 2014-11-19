@@ -54,12 +54,15 @@ define(['globalConstants'], function (Constant) {
 				}
 				else {
 					this.y -= Constant.ninja.jumpHeight;
-	                this.image = images.fall;
 				}
 			},
 			update: function () {
 				if (this.y < Constant.boundry.bottom) {
 					this.y += Constant.ninja.fallHeight;
+					this.image = images.fall;
+				}
+				else {
+					this.image = images.straight;
 				}
 			},
 			moveLeft: function () {
@@ -73,7 +76,9 @@ define(['globalConstants'], function (Constant) {
 		        }
 			},
 	       	crouch: function () {
-          		this.image = images.crouchLeft;
+				if(this.y > Constant.boundry.bottom - 10) {
+					this.image = images.crouchLeft;
+				}
 	        },
 			shoot: function () {
 	            this.image = images.shootLeft;

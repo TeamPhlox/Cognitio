@@ -4,6 +4,6 @@ define([], function () {
 			width: 1200,
 			height: 680
 		},
-		gameSpeed: 100
+		gameSpeed: 50
 	};
 });
