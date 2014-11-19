@@ -16,6 +16,7 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
     objectList.push(castle);
 
     renderer.drawHealthBar();
+    renderer.drawNinjaHealthBar();
 
     // Game core loop
 	function gameFrame () {

@@ -154,6 +154,48 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 		infoLayer.draw();
 	}
 
+
+	var ninjaDamageBar;
+	function drawNinjaHealthBar() {
+		var ninjaHealthBarBackground = new Kinetic.Rect({
+			x: 800,
+			y: 30,
+			width: 150,
+			height: 30,
+			fill: 'white',
+			stroke: 'black',
+			strokeWidth: 5
+		});
+
+		ninjaDamageBar = new Kinetic.Rect({
+			x: 800,
+			y: 30,
+			width: 150,
+			height: 30,
+			fill: 'red',
+			stroke: 'black',
+			strokeWidth: 5
+		});
+
+		infoLayer.add(ninjaHealthBarBackground);
+		infoLayer.draw();
+
+		infoLayer.add(ninjaDamageBar);
+		infoLayer.draw();
+	}
+
+	function updateNinjaHealthBar (health) {
+		var damage = (health / 100) * 150
+		ninjaDamageBar.size({width: damage})
+
+		if(damage == 0){
+			ninjaDamageBar.remove();
+		}
+
+		infoLayer.draw();
+	}
+
+
 	function clear() {
 		frontLayer.destroyChildren();
 	}
@@ -173,6 +215,8 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 		clear: clear,
 		drawShurikenObjects: drawShurikenObjects,
 		drawHealthBar: drawHealthBar,
-		updateHealthBar: updateHealthBar
+		updateHealthBar: updateHealthBar,
+		drawNinjaHealthBar: drawNinjaHealthBar,
+		updateNinjaHealthBar: updateNinjaHealthBar
 	};
 });
