@@ -103,7 +103,7 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
     function createShuriken() {
     	if (Date.now() - lastFiredShuriken > Constant.shuriken.reloadTime) {
     		lastFiredShuriken = Date.now();
-			shurikens.push(new GameObjects.Shuriken(ninja.x, ninja.y));
+			shurikens.push(new GameObjects.Shuriken(ninja.x, ninja.y + 60));
     	}
     }
 
