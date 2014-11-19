@@ -5,6 +5,7 @@ define(['globalConstants'], function (Constant) {
 			this.y = startY;
 			this.width = Constant.castle.width;
 			this.height = Constant.castle.height;
+			this.health = 100;
 
 			this.image = new Image();
 			this.image.src = imagePath;

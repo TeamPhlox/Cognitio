@@ -14,12 +14,17 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 	backgroundImageObj.src = 'img/background.jpg';
 
 	stage.add(backgroundLayer); 
-	backgroundLayer.moveToBottom();
+	backgroundLayer.setZIndex(0);
 
 	// Setting front layer
 	var frontLayer = new Kinetic.Layer();
 	stage.add(frontLayer);
-	frontLayer.moveToTop();
+	frontLayer.setZIndex(1);
+
+	var infoLayer = new Kinetic.Layer();
+	stage.add(infoLayer); 
+	infoLayer.setZIndex(2);
+
 
 	function drawImageObjects (gameObjects) {
 		if (!gameObjects) {
@@ -65,7 +70,42 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 
 			frontLayer.add(shuriken);
 			frontLayer.draw();
+
 		}
+	}
+
+	var damageBar;
+	function drawHealthBar() {
+		var healthBar = new Kinetic.Rect({
+			x: 450,
+			y: 50,
+			width: 400,
+			height: 50,
+			fill: 'white',
+			stroke: 'black',
+			strokeWidth: 5
+		});
+
+		damageBar = new Kinetic.Rect({
+			x: 845,
+			y: 55,
+			width: 0,
+			height: 40,
+			fill: 'red',
+		});
+
+		infoLayer.add(healthBar);
+		infoLayer.draw();
+
+		infoLayer.add(damageBar);
+		infoLayer.draw();
+	}
+
+	function updateHealthBar (damage) {
+		damageBar.move({x: -damage});
+		damageBar.size({width: damage})
+
+		infoLayer.draw();
 	}
 
 	function clear() {
@@ -85,6 +125,8 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 	return {
 		drawImageObjects: drawImageObjects,
 		clear: clear,
-		drawShurikenObjects: drawShurikenObjects
+		drawShurikenObjects: drawShurikenObjects,
+		drawHealthBar: drawHealthBar,
+		updateHealthBar: updateHealthBar
 	};
 });

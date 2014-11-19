@@ -15,6 +15,8 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
     objectList.push(ninja);
     objectList.push(castle);
 
+    renderer.drawHealthBar();
+
     // Game core loop
 	function gameFrame () {
 		// Check for user input
@@ -30,6 +32,7 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 				if (hasCollsion(shurikens[i], castle)) 
 				{
 					shurikens.splice(i, 1);
+					renderer.updateHealthBar(5);
 				}
 				else {
 					shurikens[i].update();
