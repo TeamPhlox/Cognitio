@@ -121,11 +121,13 @@ define(['globalConstants'], function (Constant) {
 			this.strokeWidth = Constant.shuriken.strokeWidth;
 			this.width = Constant.shuriken.width;
 			this.height = Constant.shuriken.height;
+			this.angle = 0;
 		}
 
 		Shuriken.prototype = {
 			update: function () {
 				this.x -= Constant.shuriken.moveDistance;
+				this.angle += 25;
 			}
 		};
 

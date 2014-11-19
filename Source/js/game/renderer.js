@@ -50,7 +50,18 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 		for (var i = 0; i < shurikenObjects.length; i++) {
 			var currentShurikenObject = shurikenObjects[i];
 
-			var shuriken = new Kinetic.Star(currentShurikenObject);
+			var shuriken = new Kinetic.Star({
+				x: currentShurikenObject.x,
+				y: currentShurikenObject.y,
+				numPoints: currentShurikenObject.numPoints,
+				innerRadius: currentShurikenObject.innerRadius,
+				outerRadius: currentShurikenObject.outerRadius,
+				fill: currentShurikenObject.fill,
+				stroke: currentShurikenObject.stroke,
+				strokeWidth: currentShurikenObject.strokeWidth
+			});
+
+			shuriken.rotate(currentShurikenObject.angle);
 
 			frontLayer.add(shuriken);
 			frontLayer.draw();

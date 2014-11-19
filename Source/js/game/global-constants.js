@@ -44,7 +44,8 @@ define([], function () {
 			width: 10,
 			height: 10,
 			moveDistance: 20,
-			reloadTime: 300
+			reloadTime: 300,
+			rotationAngle: 25
 		},
 	};
 });
