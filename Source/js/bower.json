@@ -5,7 +5,8 @@
   "authors": [
     "IvailoPapazov <ihellfiend@gmail.com>",
     "00dri <alexandrova.adriana@gmail.com>",
-    "ivzb <izahariev96@gmail.com>"
+    "ivzb <izahariev96@gmail.com>",
+    "ves_velichkov <kolior4eto97@gmail.com>"
   ],
   "main": "app.js",
   "license": "MIT",
