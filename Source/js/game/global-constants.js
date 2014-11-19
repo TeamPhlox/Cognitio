@@ -9,7 +9,8 @@ define([], function () {
 		},
 		sounds: {
 			jump: 'music/jump.wav',
-			shoot: 'music/shoot.mp3'
+			shoot: 'music/shoot.mp3',
+			been_shot: 'music/been_shot.wav'
 		},
 		initialPosition: {
 			ninja: {
