@@ -20,14 +20,15 @@ define([], function () {
         boundry: {
             left: 650,
             right: 980,
-            bottom: 470
+            bottom: 470,
+            top: 230
         },
 		ninja: {
-			jumpHeight: 250,
+			jumpHeight: 150,
 			fallHeight: 20,
 	        moveDistance: 50,
 			width: 186,
-			height: 185
+			height: 185,
 		},
 		castle: {
 			width: 537,

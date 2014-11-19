@@ -34,6 +34,7 @@ define(['globalConstants'], function (Constant) {
 			this.y = startY;
 			this.width = Constant.ninja.width;
 			this.height = Constant.ninja.height;
+			this.state = "steady";
 
 			// Initialize images
 			images.straight.src = imagePath + "/Ninja-Straight.png";
@@ -49,20 +50,32 @@ define(['globalConstants'], function (Constant) {
 		
 		Ninja.prototype = {
 			jump: function () {
-				if (this.y - Constant.ninja.jumpHeight < 0) {
-					this.y = 0;
+				if (this.state != "steady") {
+					return;
 				}
-				else {
-					this.y -= Constant.ninja.jumpHeight;
-				}
+
+				this.state = "jump";
 			},
 			update: function () {
-				if (this.y < Constant.boundry.bottom) {
-					this.y += Constant.ninja.fallHeight;
-					this.image = images.fall;
+				if (this.state == "steady") {
+					return;
 				}
-				else {
-					this.image = images.straight;
+
+				if (this.state == "jump") {
+					if (this.y <= Constant.boundry.top) {
+						this.state = "fall";
+					}
+					else {
+						this.y -= Constant.ninja.jumpHeight;
+					}
+				}
+				else if (this.state == "fall") {
+					if (this.y >= Constant.boundry.bottom) {
+						this.state = "steady";
+					}
+					else {
+						this.y += Constant.ninja.fallHeight;
+					}
 				}
 			},
 			moveLeft: function () {
