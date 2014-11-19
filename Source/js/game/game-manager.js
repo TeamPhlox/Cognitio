@@ -15,15 +15,13 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
     objectList.push(castle);
 
     // Game core loop
-	function init () {
+	function gameFrame () {
 		// Check for user input
 		document.addEventListener('keydown', onKeyPress);
 
 		// Update object 
 		for (var i = 0; i < objectList.length; i++) {
-			if (objectList[i].position == 'front') {
-				objectList[i].update();
-			}
+			objectList[i].update();
 		}
 
 		if (shurikens) {
@@ -46,10 +44,13 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 		renderer.drawShurikenObjects(shurikens);
 
 		// Repeat game cycle
-		iteration = setTimeout(init, config.gameSpeed);
 	}	
 
-	// Helper function that stops init 
+	// Helper function that starts and stops game 
+	function init() {
+		iteration = setInterval(gameFrame, config.gameSpeed);
+	}
+
 	function stopIteration () {
 		clearTimeout(iteration);
 	}

@@ -6,11 +6,15 @@ define(['globalConstants'], function (Constant) {
 			this.width = Constant.castle.width;
 			this.height = Constant.castle.height;
 
-			this.position = 'back';
-
 			this.image = new Image();
 			this.image.src = imagePath;
 		}
+
+		Castle.prototype = {
+			update: function () {
+				return;
+			}
+		};
 
 		return Castle;
 	})();
@@ -30,7 +34,6 @@ define(['globalConstants'], function (Constant) {
 			this.y = startY;
 			this.width = Constant.ninja.width;
 			this.height = Constant.ninja.height;
-			this.position = 'front';
 
 			// Initialize images
 			images.straight.src = imagePath + "/Ninja-Straight.png";

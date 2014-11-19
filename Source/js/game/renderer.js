@@ -37,7 +37,7 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 				height: currentObject.height
 			});
 
-			if(currentObject.position == 'back') {
+			if (currentObject.position == 'back') {
 				backgroundLayer.add(currentImage);
 				backgroundLayer.draw();
 			}
@@ -65,6 +65,7 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 
 	function clear() {
 		frontLayer.destroyChildren();
+		backgroundLayer.destroyChildren();
 	}
 
 	// Adding the background image
