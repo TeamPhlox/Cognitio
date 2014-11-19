@@ -55,6 +55,7 @@ define(['globalConstants'], function (Constant) {
 				}
 
 				this.state = "jump";
+				this.image = images.straight;
 			},
 			update: function () {
 				if (this.state == "steady") {
@@ -64,6 +65,7 @@ define(['globalConstants'], function (Constant) {
 				if (this.state == "jump") {
 					if (this.y <= Constant.boundry.top) {
 						this.state = "fall";
+						this.image = images.fall;
 					}
 					else {
 						this.y -= Constant.ninja.jumpHeight;
@@ -89,7 +91,7 @@ define(['globalConstants'], function (Constant) {
 		        }
 			},
 	       	crouch: function () {
-				if(this.y > Constant.boundry.bottom - 10) {
+				if(this.y > Constant.boundry.bottom - 20) {
 					this.image = images.crouchLeft;
 				}
 	        },
