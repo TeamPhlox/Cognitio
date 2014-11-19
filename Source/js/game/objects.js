@@ -3,6 +3,9 @@ define(['globalConstants'], function (GlobalConstants) {
 		function Castle (startX, startY, imagePath) {
 			this.x = startX;
 			this.y = startY;
+			this.width = 300;
+			this.height = 600;
+
 			this.position = 'back';
 
 			this.image = new Image();
@@ -53,9 +56,6 @@ define(['globalConstants'], function (GlobalConstants) {
 			if (this.y < GlobalConstants.borders.bottom) {
 				this.y += GlobalConstants.fallHeight;
 			}
-//            else{
-//                this.image = images.straight;
-//            }
 		};
 
 		Ninja.prototype.moveLeft = function () {
@@ -94,15 +94,31 @@ define(['globalConstants'], function (GlobalConstants) {
 	})();
 
 	var Shuriken = (function () {
-		function Shuriken () {
-
+		function Shuriken (startX, startY) {
+			this.x = startX;
+			this.y = startY;
+			this.numPoints = 5;
+			this.innerRadius = 8;
+			this.outerRadius = 20;
+			this.fill = 'yellow';
+			this.stroke = 'black';
+			this.strokeWidth = 4;
+			this.width = 20;
+			this.height = 20;
 		}
+
+		Shuriken.prototype = {
+			update: function () {
+				this.x -= 20;
+			}
+		};
 
 		return Shuriken;
 	})();
 
 	return {
 		Castle: Castle,
-		Ninja: Ninja
+		Ninja: Ninja,
+		Shuriken: Shuriken
 	};
 });
