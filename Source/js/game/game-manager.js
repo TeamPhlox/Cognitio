@@ -7,12 +7,13 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 		wizard,
 		objectList = [],
 		shurikens = [],
+		bolts = [],
 		lastFiredShuriken = Date.now();
 
     // Initialize object
     ninja = new GameObjects.Ninja(Constant.initialPosition.ninja.x, Constant.initialPosition.ninja.y, 'img/ninja');
     castle = new GameObjects.Castle(Constant.initialPosition.castle.x, Constant.initialPosition.castle.y, 'img/castle.png');
-    wizard = new GameObjects.Wizard(Constant.initialPosition.wizard.x, Constant.initialPosition.wizard.y, 'img/wizard.png');
+    wizard = new GameObjects.Wizard(Constant.initialPosition.wizard.x, Constant.initialPosition.wizard.y, 'img/wizard');
 
     objectList.push(ninja);
     objectList.push(castle);
@@ -38,6 +39,10 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 					castle.takeHit(shurikens[i].damage);
 					renderer.updateHealthBar(castle.health);
 					shurikens.splice(i, 1);
+					if (castle.health <= 0) {
+						wizard.die();
+						stopIteration();
+					}
 				}
 				else {
 					shurikens[i].update();
@@ -45,12 +50,40 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 			}
 		}
 
+		if (bolts) {
+			for (var i = 0; i < bolts.length; i++) {
+				if (hasCollsion(bolts[i], ninja)) 
+				{
+					ninja.takeHit(bolts[i].damage);
+					renderer.updateNinjaHealthBar(ninja.health);
+					bolts.splice(i, 1);
+					if (ninja.health <= 0) {
+						ninja.die();
+						renderer.drawQuestionBox();
+						stopIteration();
+					}
+				}
+				else if (bolts[i].x > screen.width) {
+					bolts.splice(i, 1);
+				}
+				else {
+					bolts[i].update();
+				}
+			}
+		}
+
+		if (Math.random() < 0.03) {
+			bolts.push(new GameObjects.Bolt(wizard.x, wizard.y, 'img/lighting-bolt.png'));
+			wizard.shoot();
+		}
+
 		// Clean objects
 		renderer.clear();
 
 		// Render screen
-		renderer.drawImageObjects([ninja, castle, wizard]);
+		renderer.drawImageObjects(objectList);
 		renderer.drawShurikenObjects(shurikens);
+		renderer.drawBoltObjects(bolts);
 
 		// renderer.drawQuestionBox();
 

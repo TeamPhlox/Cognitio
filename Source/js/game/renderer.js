@@ -76,6 +76,27 @@ define(['kinetic', 'config', 'globalConstants'], function (Kinetic, config, Cons
 		}
 	}
 
+	function drawBoltObjects (boltObjects) {
+		if (!boltObjects) {
+			return;
+		}
+
+		for (var i = 0; i < boltObjects.length; i++) {
+			var currentBoltObject = boltObjects[i];
+
+			var currentBoltImage = new Kinetic.Image({
+				x: currentBoltObject.x,
+				y: currentBoltObject.y,
+				image: currentBoltObject.image,
+				width: currentBoltObject.width,
+				height: currentBoltObject.height
+			});
+
+			frontLayer.add(currentBoltImage);
+			frontLayer.draw();
+		}
+	}
+
 	function drawQuestionBox (questionBox) {
 		var questionBox = new Kinetic.Rect({
 			x: stage.width() / 1.9 - (stage.width() * 0.75) / 5,
@@ -217,6 +238,8 @@ define(['kinetic', 'config', 'globalConstants'], function (Kinetic, config, Cons
 		drawHealthBar: drawHealthBar,
 		updateHealthBar: updateHealthBar,
 		drawNinjaHealthBar: drawNinjaHealthBar,
-		updateNinjaHealthBar: updateNinjaHealthBar
+		updateNinjaHealthBar: updateNinjaHealthBar,
+		drawBoltObjects: drawBoltObjects,
+		drawQuestionBox: drawQuestionBox
 	};
 });

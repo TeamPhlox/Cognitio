@@ -31,7 +31,8 @@ define(['globalConstants', 'sounds'], function (Constant, Sounds) {
 			crouchRight: new Image(),
 			shootLeft: new Image(),
 			shootRight: new Image(),
-			fall: new Image()
+			fall: new Image(),
+			dead: new Image()
 		};
 
 		function Ninja (startX, startY, imagePath) {
@@ -39,6 +40,7 @@ define(['globalConstants', 'sounds'], function (Constant, Sounds) {
 			this.y = startY;
 			this.width = Constant.ninja.width;
 			this.height = Constant.ninja.height;
+			this.health = 100;
 			this.state = "steady";
 
 			// Initialize images
@@ -49,6 +51,7 @@ define(['globalConstants', 'sounds'], function (Constant, Sounds) {
 			images.shootLeft.src = imagePath + "/Ninja-Shoot-Left.png";
 			images.shootRight.src = imagePath + "/Ninja-Shoot-Right.png";
 			images.fall.src = imagePath + "/Ninja-Fall.png";
+			images.dead.src = imagePath + "/Ninja-Dead.png";
 
 			// Initial object image
 			this.image = images.straight;
@@ -123,6 +126,12 @@ define(['globalConstants', 'sounds'], function (Constant, Sounds) {
 	            }, 100);
 				
 				Sounds.PlaySound(Constant.sounds.shoot);
+	        },
+	        takeHit: function (damage) {
+	        	this.health -= damage;
+	        },
+	        die: function () {
+	        	this.image = images.dead;
 	        }
 		}
 
@@ -130,19 +139,39 @@ define(['globalConstants', 'sounds'], function (Constant, Sounds) {
 	})();
 
 	var Wizard = (function () {
+		var images = {
+			idle: new Image(),
+			attack: new Image(),
+			dead: new Image()
+		};
+
 		function Wizard (startX, startY, imagePath) {
 			this.x = startX;
 			this.y = startY;
 			this.width = Constant.wizard.width;
 			this.height = Constant.wizard.height;
 
-			this.image = new Image();
-			this.image.src = imagePath;
+			images.idle.src = imagePath + '/wizard-idle.png';
+			images.attack.src = imagePath + '/wizard-attack.png';
+			images.dead.src = imagePath + '/wizard-dead.png';
+
+			this.image = images.idle;
 		}
 		
 		Wizard.prototype = {
 			update: function () {
 				return;
+			},
+			shoot: function () {
+				var that = this;
+				this.image = images.attack;
+
+	            setTimeout(function () {
+	            	that.image = images.idle;
+	            }, 100);
+			},
+			die: function () {
+				this.image = images.dead;
 			}
 		};
 
@@ -175,10 +204,34 @@ define(['globalConstants', 'sounds'], function (Constant, Sounds) {
 		return Shuriken;
 	})();
 
+	var Bolt = (function () {
+		function Bolt (startX, startY, imageSrc) {
+			this.x = startX;
+			this.y = startY;
+			this.width = 150;
+			this.height = 79;
+			this.damage = 5;
+			this._yDeviation = (Math.random() - 0.5) * 10;
+
+			this.image = new Image();
+			this.image.src = imageSrc;
+		}
+
+		Bolt.prototype = {
+			update: function () {
+				this.x += 10;
+				this.y += this._yDeviation;
+			}
+		};
+
+		return Bolt;
+	})();
+
 	return {
 		Castle: Castle,
 		Ninja: Ninja,
 		Shuriken: Shuriken,
-		Wizard: Wizard
+		Wizard: Wizard,
+		Bolt: Bolt
 	};
 });
