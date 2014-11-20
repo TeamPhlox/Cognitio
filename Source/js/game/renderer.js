@@ -1,4 +1,4 @@
-define(['kinetic', 'config'], function (Kinetic, config) {
+define(['kinetic', 'config', 'globalConstants'], function (Kinetic, config, Constant) {
 	'use strict';
 
 	// Kinetic setup
@@ -76,37 +76,36 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 		}
 	}
 
-		function drawQuestionBox(questionBox){
-
+	function drawQuestionBox (questionBox) {
 		var questionBox = new Kinetic.Rect({
 			x: stage.width() / 1.9 - (stage.width() * 0.75) / 5,
 			y: stage.height() / 2 - (stage.height() * 0.75) / 2,	
 			width: stage.width() * 0.35,
-			height: stage.height() * 0.3,
+			height: stage.height() * 0.2,
 			fill: 'white',
-			opacity:0.4,
-			stroke: 'aqua',
+			opacity: 0.4,
+			stroke: 'black',
 			strokeWidth: 4,
 			cornerRadius: 10,
 			dash: [103, 1],
 			shadowColor: 'gray',
-        	shadowBlur: 10,
-        	shadowOffset: {x:10,y:10},
-        	shadowOpacity: 0.2,
-			});
+			shadowBlur: 10,
+			shadowOffset: {x:10,y:10},
+			shadowOpacity: 0.2,
+		});
 
 		var questionText = new Kinetic.Text({
 			x: stage.width() / 1.9 - (stage.width() * 0.75) / 5,
 			y: stage.height() / 2 - (stage.height() * 0.75) / 2,	
-	        text: 'Q: "Whats the object-oriented way to become wealthy?"\n\nA: Inheritance',
-	        fontSize: 18,
-	        fontFamily: 'Calibri',
-	        fill: '#555',
-	        width: stage.width() * 0.35,
+			text: Constant.jokes.joke[Math.floor(Math.random() * Constant.jokes.joke.length)],
+			fontSize: 18,
+			fontFamily: 'Calibri',
+			fill: '#555',
+			width: stage.width() * 0.35,
 			height: stage.height() * 0.3,
-	        padding: 20,
-	        align: 'center'
-	      	});
+			padding: 20,
+			align: 'center'
+		});
 
 		questionLayer.add(questionBox);
 		questionLayer.add(questionText);

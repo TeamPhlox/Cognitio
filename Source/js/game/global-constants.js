@@ -20,6 +20,10 @@ define([], function () {
 			castle: {
 				x: 20,
 				y: 20
+			},
+			wizard: {
+				x: 440,
+				y: 368
 			}
 		},
         boundry: {
@@ -52,5 +56,16 @@ define([], function () {
 			reloadTime: 300,
 			rotationAngle: 25
 		},
+		wizard: {
+			width: 140,
+			height: 141
+		},
+		jokes: {
+			joke: [
+				'Q: "Whats the object-oriented way to become wealthy?"\n\nA: Inheritance',
+				'Q: "How do you tell an introverted computer scientist from an extroverted computer scientist?"\n\nA: An extroverted computer scientist looks at your shoes when he talks to you.',
+				'Q: "Why do programmers always mix up Halloween and Christmas?"\n\nA: Because Oct 31 == Dec 25!'
+			]
+		}
 	};
 });

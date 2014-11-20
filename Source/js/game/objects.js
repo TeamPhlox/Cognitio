@@ -130,9 +130,21 @@ define(['globalConstants', 'sounds'], function (Constant, Sounds) {
 	})();
 
 	var Wizard = (function () {
-		function Wizard (startX, startY) {
+		function Wizard (startX, startY, imagePath) {
+			this.x = startX;
+			this.y = startY;
+			this.width = Constant.wizard.width;
+			this.height = Constant.wizard.height;
 
+			this.image = new Image();
+			this.image.src = imagePath;
 		}
+		
+		Wizard.prototype = {
+			update: function () {
+				return;
+			}
+		};
 
 		return Wizard;
 	})();
@@ -166,6 +178,7 @@ define(['globalConstants', 'sounds'], function (Constant, Sounds) {
 	return {
 		Castle: Castle,
 		Ninja: Ninja,
-		Shuriken: Shuriken
+		Shuriken: Shuriken,
+		Wizard: Wizard
 	};
 });

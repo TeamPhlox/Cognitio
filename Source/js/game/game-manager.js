@@ -4,6 +4,7 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 	var iteration,
 		ninja,
 		castle,
+		wizard,
 		objectList = [],
 		shurikens = [],
 		lastFiredShuriken = Date.now();
@@ -11,9 +12,11 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
     // Initialize object
     ninja = new GameObjects.Ninja(Constant.initialPosition.ninja.x, Constant.initialPosition.ninja.y, 'img/ninja');
     castle = new GameObjects.Castle(Constant.initialPosition.castle.x, Constant.initialPosition.castle.y, 'img/castle.png');
+    wizard = new GameObjects.Wizard(Constant.initialPosition.wizard.x, Constant.initialPosition.wizard.y, 'img/wizard.png');
 
     objectList.push(ninja);
     objectList.push(castle);
+    objectList.push(wizard);
 
     renderer.drawHealthBar();
     renderer.drawNinjaHealthBar();
@@ -46,7 +49,7 @@ define(['config', 'renderer', 'objects', 'globalConstants'], function (config, r
 		renderer.clear();
 
 		// Render screen
-		renderer.drawImageObjects([ninja, castle]);
+		renderer.drawImageObjects([ninja, castle, wizard]);
 		renderer.drawShurikenObjects(shurikens);
 
 		// renderer.drawQuestionBox();
