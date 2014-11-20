@@ -98,7 +98,7 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 		var questionText = new Kinetic.Text({
 			x: stage.width() / 1.9 - (stage.width() * 0.75) / 5,
 			y: stage.height() / 2 - (stage.height() * 0.75) / 2,	
-	        text: 'Test test\n\n Test test test',
+	        text: 'Q: "Whats the object-oriented way to become wealthy?"\n\nA: Inheritance',
 	        fontSize: 18,
 	        fontFamily: 'Calibri',
 	        fill: '#555',
@@ -114,6 +114,7 @@ define(['kinetic', 'config'], function (Kinetic, config) {
 	}
 
 	var damageBar;
+	
 	function drawHealthBar() {
 		var healthBarBackground = new Kinetic.Rect({
 			x: 100,
